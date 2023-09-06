@@ -1,0 +1,121 @@
+"scenario_id","scenario_name","scenario_fullname","round","date_round","end_date"
+"A-2020-12-22","optimistic","“Optimistic” Scenario","round1","2021-01-0.",2021-07-03
+"B-2020-12-22","moderate","Business as Usual + Moderate Vaccine Scenario","round1","2021-01-0.",2021-07-03
+"C-2020-12-22","fatigue","Fatigue and Hesitancy Scenario","round1","2021-01-0.",2021-07-03
+"D-2020-12-22","counterfactual","Counterfactual Scenario","round1","2021-01-0.",2021-07-03
+"A-2021-01-22","optimistic_no_var","“Optimistic” Scenario, No Variant Strain","round2","2021-01-2.",2021-07-24
+"B-2021-01-22","optimistic_var","“Optimistic” Scenario, Variant Strain","round2","2021-01-2.",2021-07-24
+"C-2021-01-22","fatigue_no_var","Fatigue and Hesitancy Scenario, No Variant Strain","round2","2021-01-2.",2021-07-24
+"D-2021-01-22","fatigue_var","Fatigue and Hesitancy Scenario, Variant Strain","round2","2021-01-2.",2021-07-24
+"A-2021-03-05","highVac_modNPI","High Vaccination, Moderate NPI","round3","2021-03-0.",2021-09-04
+"B-2021-03-05","highVac_lowNPI","High Vaccination, Low NPI","round3","2021-03-0.",2021-09-04
+"C-2021-03-05","lowVac_modNPI","Low Vaccination, Moderate NPI","round3","2021-03-0.",2021-09-04
+"D-2021-03-05","lowVac_lowNPI","Low Vaccination & Low NPI","round3","2021-03-0.",2021-09-04
+"A-2021-03-28","highVac_modNPI","High Vaccination, Moderate NPI","round4","2021-03-3.",2021-09-25
+"B-2021-03-28","highVac_lowNPI","High Vaccination, Low NPI","round4","2021-03-3.",2021-09-25
+"C-2021-03-28","lowVac_modNPI","Low Vaccination, Moderate NPI","round4","2021-03-3.",2021-09-25
+"D-2021-03-28","lowVac_lowNPI","Low Vaccination, Low NPI","round4","2021-03-3.",2021-09-25
+"A-2021-03-28","highVac_modNPI","High Vaccination, Moderate NPI","round4","2021-03-2.",2021-09-25
+"B-2021-03-28","highVac_lowNPI","High Vaccination, Low NPI","round4","2021-03-2.",2021-09-25
+"C-2021-03-28","lowVac_modNPI","Low Vaccination, Moderate NPI","round4","2021-03-2.",2021-09-25
+"D-2021-03-28","lowVac_lowNPI","Low Vaccination, Low NPI","round4","2021-03-2.",2021-09-25
+"A-2021-05-02","highVac_modNPI","High Vaccination, Moderate NPI","round5","2021-05-0.",2021-10-30
+"B-2021-05-02","highVac_lowNPI","High Vaccination, Low NPI","round5","2021-05-0.",2021-10-30
+"C-2021-05-02","lowVac_modNPI","Low Vaccination, Moderate NPI","round5","2021-05-0.",2021-10-30
+"D-2021-05-02","lowVac_lowNPI","Low Vaccination & Low NPI","round5","2021-05-0.",2021-10-30
+"A-2021-06-08","highVac_lowVar","High Vaccination, Low Variant Transmissibility Increase","round6","2021-06-0.",2021-11-27
+"B-2021-06-08","highVac_highVar","High Vaccination, High Variant Transmissibility Increase","round6","2021-06-0.",2021-11-27
+"C-2021-06-08","lowVac_lowVar","Low Vaccination, Low Variant Transmissibility Increase","round6","2021-06-0.",2021-11-27
+"D-2021-06-08","lowVac_highVar","Low Vaccination, High Variant Transmissibility Increase","round6","2021-06-0.",2021-11-27
+"A-2021-06-08","highVac_lowVar","High Vaccination, Low Variant Transmissibility Increase","round6","2021-05-2.",2021-11-27
+"B-2021-06-08","highVac_highVar","High Vaccination, High Variant Transmissibility Increase","round6","2021-05-2.",2021-11-27
+"C-2021-06-08","lowVac_lowVar","Low Vaccination, Low Variant Transmissibility Increase","round6","2021-05-2.",2021-11-27
+"D-2021-06-08","lowVac_highVar","Low Vaccination, High Variant Transmissibility Increase","round6","2021-05-2.",2021-11-27
+"A-2021-06-08","highVac_lowVar","High Vaccination, Low Variant Transmissibility Increase","round6","2021-05-3.",2021-11-27
+"B-2021-06-08","highVac_highVar","High Vaccination, High Variant Transmissibility Increase","round6","2021-05-3.",2021-11-27
+"C-2021-06-08","lowVac_lowVar","Low Vaccination, Low Variant Transmissibility Increase","round6","2021-05-3.",2021-11-27
+"D-2021-06-08","lowVac_highVar","Low Vaccination, High Variant Transmissibility Increase","round6","2021-05-3.",2021-11-27
+"A-2021-07-13","highVac_lowVar","High Vaccination, Low Variant Transmissibility Increase","round7","2021-07-1.",2022-01-01
+"B-2021-07-13","highVac_highVar","High Vaccination, High Variant Transmissibility Increase","round7","2021-07-1.",2022-01-01
+"C-2021-07-13","lowVac_lowVar","Low Vaccination, Low Variant Transmissibility Increase","round7","2021-07-1.",2022-01-01
+"D-2021-07-13","lowVac_highVar","Low Vaccination, High Variant Transmissibility Increase","round7","2021-07-1.",2022-01-01
+"A-2021-07-13","highVac_lowVar","High Vaccination, Low Variant Transmissibility Increase","round7","2021-07-0.",2022-01-01
+"B-2021-07-13","highVac_highVar","High Vaccination, High Variant Transmissibility Increase","round7","2021-07-0.",2022-01-01
+"C-2021-07-13","lowVac_lowVar","Low Vaccination, Low Variant Transmissibility Increase","round7","2021-07-0.",2022-01-01
+"D-2021-07-13","lowVac_highVar","Low Vaccination, High Variant Transmissibility Increase","round7","2021-07-0.",2022-01-01
+"A-2021-08-17","noWan","No Waning","round8","2021-08-1.",2022-02-12
+"B-2021-08-17","highPro_fastWan","High Protection, Fast Waning","round8","2021-08-1.",2022-02-12
+"C-2021-08-17","lowPro_slowWan","Low Protection, Slow Waning","round8","2021-08-1.",2022-02-12
+"D-2021-08-17","lowPro_fastWan","Low Protection, Fast Waning","round8","2021-08-1.",2022-02-12
+"A-2021-08-17","noWan","No Waning","round8","2021-08-2.",2022-02-12
+"B-2021-08-17","highPro_fastWan","High Protection, Fast Waning","round8","2021-08-2.",2022-02-12
+"C-2021-08-17","lowPro_slowWan","Low Protection, Slow Waning","round8","2021-08-2.",2022-02-12
+"D-2021-08-17","lowPro_fastWan","Low Protection, Fast Waning","round8","2021-08-2.",2022-02-12
+"A-2021-09-14","ChildVax_noVar","Childhood Vaccination, No Variant","round9","2021-09-1.",2022-03-12
+"B-2021-09-14","noChildVax_noVar","No Childhood Vaccination, No Variant","round9","2021-09-1.",2022-03-12
+"C-2021-09-14","ChildVax_Var","Childhood Vaccination, New Variant","round9","2021-09-1.",2022-03-12
+"D-2021-09-14","noChildVax_Var","No Childhood Vaccination, New Variant","round9","2021-09-1.",2022-03-12
+"A-2021-09-14","ChildVax_noVar","Childhood Vaccination, No Variant","round9","2021-09-0.",2022-03-12
+"B-2021-09-14","noChildVax_noVar","No Childhood Vaccination, No Variant","round9","2021-09-0.",2022-03-12
+"C-2021-09-14","ChildVax_Var","Childhood Vaccination, New Variant","round9","2021-09-0.",2022-03-12
+"D-2021-09-14","noChildVax_Var","No Childhood Vaccination, New Variant","round9","2021-09-0.",2022-03-12
+"A-2021-11-09","optWan_highBoo","Optimistic waning, widespread boosters","round10","2021-11-0.",2022-11-12
+"B-2021-11-09","optWan_lowBoo","Optimistic waning, restricted boosters","round10","2021-11-0.",2022-11-12
+"C-2021-11-09","pessWan_highBoo","Pessimistic waning, widespread boosters","round10","2021-11-0.",2022-11-12
+"D-2021-11-09","pessWan_lowBoo","Pessimistic waning, restricted boosters","round10","2021-11-0.",2022-11-12
+"A-2021-11-09","optWan_highBoo","Optimistic waning, widespread boosters","round10","2021-11-1.",2022-11-12
+"B-2021-11-09","optWan_lowBoo","Optimistic waning, restricted boosters","round10","2021-11-1.",2022-11-12
+"C-2021-11-09","pessWan_highBoo","Pessimistic waning, widespread boosters","round10","2021-11-1.",2022-11-12
+"D-2021-11-09","pessWan_lowBoo","Pessimistic waning, restricted boosters","round10","2021-11-1.",2022-11-12
+"A-2021-11-09","optWan_highBoo","Optimistic waning, widespread boosters","round10","2021-11-2.",2022-11-12
+"B-2021-11-09","optWan_lowBoo","Optimistic waning, restricted boosters","round10","2021-11-2.",2022-11-12
+"C-2021-11-09","pessWan_highBoo","Pessimistic waning, widespread boosters","round10","2021-11-2.",2022-11-12
+"D-2021-11-09","pessWan_lowBoo","Pessimistic waning, restricted boosters","round10","2021-11-2.",2022-11-12
+"A-2021-11-09","optWan_highBoo","Optimistic waning, widespread boosters","round10","2021-12-0.",2022-11-12
+"B-2021-11-09","optWan_lowBoo","Optimistic waning, restricted boosters","round10","2021-12-0.",2022-11-12
+"C-2021-11-09","pessWan_highBoo","Pessimistic waning, widespread boosters","round10","2021-12-0.",2022-11-12
+"D-2021-11-09","pessWan_lowBoo","Pessimistic waning, restricted boosters","round10","2021-12-0.",2022-11-12
+"A-2021-12-21","optSev_highIE","Optimistic severity, High immune escape/Low transmissibility increase","round11","2021-12-2.",2022-03-12
+"B-2021-12-21","optSev_lowIE","Optimistic severity, Low immune escape/High transmissibility increase","round11","2021-12-2.",2022-03-12
+"C-2021-12-21","pessSev_highIE","Pessimistic severity, High immune escape/Low transmissibility increase","round11","2021-12-2.",2022-03-12
+"D-2021-12-21","pessSev_lowIE","Pessimistic severity, Low immune escape/High transmissibility increase","round11","2021-12-2.",2022-03-12
+"A-2021-12-21","optSev_highIE","Optimistic severity, High immune escape/Low transmissibility increase","round11","2021-12-1.",2022-03-12
+"B-2021-12-21","optSev_lowIE","Optimistic severity, Low immune escape/High transmissibility increase","round11","2021-12-1.",2022-03-12
+"C-2021-12-21","pessSev_highIE","Pessimistic severity, High immune escape/Low transmissibility increase","round11","2021-12-1.",2022-03-12
+"D-2021-12-21","pessSev_lowIE","Pessimistic severity, Low immune escape/High transmissibility increase","round11","2021-12-1.",2022-03-12
+"A-2022-01-09","optSev_highIE","Optimistic severity, High immune escape","round12","2022-01-1.",2022-04-02
+"B-2022-01-09","optSev_lowIE","Optimistic severity, Low immune escape","round12","2022-01-1.",2022-04-02
+"C-2022-01-09","pessSev_highIE","Pessimistic severity, High immune escape","round12","2022-01-1.",2022-04-02
+"D-2022-01-09","pessSev_lowIE","Pessimistic severity, Low immune escape","round12","2022-01-1.",2022-04-02
+"A-2022-01-09","optSev_highIE","Optimistic severity, High immune escape","round12","2022-01-0.",2022-04-02
+"B-2022-01-09","optSev_lowIE","Optimistic severity, Low immune escape","round12","2022-01-0.",2022-04-02
+"C-2022-01-09","pessSev_highIE","Pessimistic severity, High immune escape","round12","2022-01-0.",2022-04-02
+"D-2022-01-09","pessSev_lowIE","Pessimistic severity, Low immune escape","round12","2022-01-0.",2022-04-02
+"A-2022-02-25","optWan_noVar","Optimistic waning, No immune escape variant","round13","2022-03-1.",2023-03-11
+"B-2022-02-25","optWan_Var","Optimistic waning, New immune escape variant","round13","2022-03-1.",2023-03-11
+"C-2022-02-25","pessWan_noVar","Pessimistic waning, No immune escape variant","round13","2022-03-1.",2023-03-11
+"D-2022-02-25","pessWan_Var","Pessimistic waning, New immune escape variant","round13","2022-03-1.",2023-03-11
+"A-2022-05-09","restBoo_noVar","Age-restricted booster recommendations, No immune escape variant","round14","2022-06-0.",2023-06-03
+"B-2022-05-09","restBoo_Var","Age-restricted booster recommendations, New immune escape variant","round14","2022-06-0.",2023-06-03
+"C-2022-05-09","broadBoo_noVar","Broad booster recommendations, No immune escape variant","round14","2022-06-0.",2023-06-03
+"D-2022-05-09","broadBoo_Var","Broad booster recommendations, New immune escape variant","round14","2022-06-0.",2023-06-03
+"A-2022-07-19","earlyBoo_noVar","Early boosters, No new variant","round15","2022-08-0.",2023-05-06
+"B-2022-07-19","earlyBoo_Var","Early boosters, New immune escape variant","round15","2022-08-0.",2023-05-06
+"C-2022-07-19","lateBoo_noVar","Late boosters, No new variant","round15","2022-08-0.",2023-05-06
+"D-2022-07-19","lateBoo_Var","Late boosters, New immune escape variant","round15","2022-08-0.",2023-05-06
+"A-2022-07-19","earlyBoo_noVar","Early boosters, No new variant","round15","2022-07-3.",2023-05-06
+"B-2022-07-19","earlyBoo_Var","Early boosters, New immune escape variant","round15","2022-07-3.",2023-05-06
+"C-2022-07-19","lateBoo_noVar","Late boosters, No new variant","round15","2022-07-3.",2023-05-06
+"D-2022-07-19","lateBoo_Var","Late boosters, New immune escape variant","round15","2022-07-3.",2023-05-06
+"A-2022-10-29","highBoo_modVar","High boosters, Moderate immune escape variant","round16","2022-11-0.",2023-04-29
+"B-2022-10-29","highBoo_highVar","High boosters, High immune escape variant","round16","2022-11-0.",2023-04-29
+"C-2022-10-29","lowBoo_modVar","Low boosters, Moderate immune escape variant","round16","2022-11-0.",2023-04-29
+"D-2022-10-29","lowBoo_highVar","Low boosters, High immune escape variant","round16","2022-11-0.",2023-04-29
+"A-2022-10-29","highBoo_modVar","High boosters, Moderate immune escape variant","round16","2022-10-2.",2023-04-29
+"B-2022-10-29","highBoo_highVar","High boosters, High immune escape variant","round16","2022-10-2.",2023-04-29
+"C-2022-10-29","lowBoo_modVar","Low boosters, Moderate immune escape variant","round16","2022-10-2.",2023-04-29
+"D-2022-10-29","lowBoo_highVar","Low boosters, High immune escape variant","round16","2022-10-2.",2023-04-29
+"A-2022-10-29","highBoo_modVar","High boosters, Moderate immune escape variant","round16","2022-10-3.",2023-04-29
+"B-2022-10-29","highBoo_highVar","High boosters, High immune escape variant","round16","2022-10-3.",2023-04-29
+"C-2022-10-29","lowBoo_modVar","Low boosters, Moderate immune escape variant","round16","2022-10-3.",2023-04-29
+"D-2022-10-29","lowBoo_highVar","Low boosters, High immune escape variant","round16","2022-10-3.",2023-04-29

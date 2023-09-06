@@ -1,0 +1,17 @@
+round,A,B,C,D,Most.Plausible.Scenario.Label,Comments
+1,1,0,0,0,optimistic,scenario with most optimistic vaccine coverage. Specified coverage is only 41% of the coverage observed during the projection period
+2,0,1,0,0,optimistic_var,"CHANGED FROM D on 10/4/2022, due to implausible assumptions about coverage limits in priority groups in scenario D; old comments: scenario with most accurate administred coverage. Observed coverage is 1.47 of the assumed coverage during the projection period. Variant is assumed to have Alpha characteristics (from UK epidemic), and Alpha did materialize"
+3,1,1,0,0,lowVac_modNPI,vaccine specs closest to oberserved coverage (80% of observed; the high bound would be 140%; VE closest to pessimistic).  NPI difficult to evaluate so C and D both plausible
+4,0,0,1,1,lowVac_modNPI,low vaccine specs closest to oberserved coverage. NPI can't be evaluated
+5,1,1,0,0,highVac_highNPI,observed vaccine saturation (78% by Oct 31) is closest to optimistic option (83%); NPI difficult to evaluate
+6,0,1,0,0,lowVac_highVar,Delta transmissibility increase over Alpha estimated at 60% consistent with highVar; observed vaccine saturation (80%) is closest to pessimistic vaccine assumption (75%)
+7,0,1,0,0,highVac_highVar,Delta transmissibility increase over Alpha estimated at 60% consistent with highVar; observed saturation (84%) closest to high vaccination assumptons (80%)
+8,0,0,0,1,lowPro_fastWan,Evidence for fast waning low protection 
+9,1,0,0,0,ChildVax_noVar,"Childhood vax in place on Nov 2nd, no evidence of new variant beyond Delta until Omicron arrived"
+10,0,0,0,1,pessWan_lowBoo,"Pessimistic waning, restricted boosters since booster coverage remains low"
+11,0,1,0,0,optSev_lowIE,"Evidence that Omicron is less severe than prior viruses and that it has a transmission advantage, in addition to immune escape. Low immune escape, high transmissibility, low severity "
+12,0,1,0,0,optSev_lowIE,"Low immune escape,low severity. Intrinsict severity reported as 50-80% lower than Delta, which is closer to the 70% reported in scenario B "
+13,1,1,0,0,pessWan_Var,Pessimistic waning (4mo timescale more likely than 10 mo) and BA2-5 variants seeded in late Spring 2022
+14,1,1,0,0,broadBoo_noVar,No new variant seeded in Sep; braod age based booster campaign
+15,1,1,0,0,,No new variant seeded in Sep; early booster campaign 
+16,0,0,1,1,,Level 6/7 variants; low booster uptake
