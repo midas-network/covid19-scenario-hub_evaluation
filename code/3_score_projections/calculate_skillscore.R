@@ -1,14 +1,33 @@
 library(dplyr)
 library(data.table)
+library(SMHEvaluationUtils)
 
 #### LOAD WIS ------------------------------------------------------------------
 source("code/3_score_projections/scoring_functions.R")
 # set base location of 
-WIS <- load_scores("data-output/WIS")
+WIS <- SMHEvaluationUtils::load_scores("data-output/WIS")
+
+# add plausibility weights
+source("code/0_setup_scenario_plausibility/define_variant_takeover.R")
+
+# a few fixes for model updates in later rounds (add to SMH EVALUATION)
+# R13: MOBS_NEU-GLEAM_COVID and MOBS_NEU-GLEAM_COVID-OT get weight = 0.5
+# R14: MOBS_NEU-GLEAM_COVID gets weight 0 and MOBS_NEU-GLEAM_COVID_OT gets weight 1
+#      USC-SIkJalpha-update gets weight 0 and USC-SIkJalpha gets weight 1
+model_exclusions <- data.frame(model_name = c("MOBS_NEU-GLEAM_COVID", 
+                                              "MOBS_NEU-GLEAM_COVID_OT", 
+                                              "MOBS_NEU-GLEAM_COVID", 
+                                              "USC-SIkJalpha-update"), 
+                               round = c(13,13,14,14), 
+                               weight = c(0.5, 0.5, 0, 0))
+
+# plausible scenarios
 WIS <- SMHEvaluationUtils::add_plaus_weight(proj = WIS,
-                                            variant_takeover = variant_takeover_date,
-                                            modelname_round_weight = model_exclusions,
-                                            keep_flags = TRUE)
+                                             variant_takeover = variant_takeover_date, 
+                                             modelname_round_weight = model_exclusions,
+                                             keep_flags = TRUE, 
+                                             p = "data-raw/data-scenarios/MostPlausibleScenarios.csv")
+
 
 #### ENSEMBLE SKILL SCORE ------------------------------------------------------
 # skill score
@@ -187,7 +206,6 @@ scenario_skill <- scenario_skill %>%
 write.csv(scenario_skill, "data-output/skill-score/skillscore_scenarios_allmods.csv")
 
 #### CACLCULATE SCENARIO SKILL SCORE (ENS ONLY, RELATIVE TO FH, BOOSTRAP) ------
-
 scenario_skill <- skill_score(WIS %>%
                                 .[model_name %in% c("null_fh", "Ensemble_LOP") &
                                     substr(target, 1,3) == "inc"] %>%
@@ -211,7 +229,6 @@ scenario_skill <- scenario_skill %>%
 
 
 # hack some bootstrapping for now
-# try leaving out 5 locations
 for(i in 1:52){
   print(i)
   scenario_skill_tmp <- skill_score(WIS %>%
@@ -247,7 +264,7 @@ for(i in 1:52){
 # randomly draw each week n_samp times to generate intervals
 set.seed(102)
 n_samp = 1000
-h <- proj[plaus_week > 0 &
+h <- WIS[plaus_week > 0 &
             model_name == "Ensemble_LOP", 
           .(h = (max(target_end_date) - min(target_end_date))/7 + 1), by = .(round)]
 w <- list()
