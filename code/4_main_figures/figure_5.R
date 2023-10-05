@@ -9,13 +9,27 @@ source("code/plot_setup.R")
 
 # set base location of 
 WIS <- SMHEvaluationUtils::load_scores("data-output/WIS")
-# add plaus weights
+
+# add plausibility weights
 source("code/0_setup_scenario_plausibility/define_variant_takeover.R")
+
+# a few fixes for model updates in later rounds (add to SMH EVALUATION)
+# R13: MOBS_NEU-GLEAM_COVID and MOBS_NEU-GLEAM_COVID-OT get weight = 0.5
+# R14: MOBS_NEU-GLEAM_COVID gets weight 0 and MOBS_NEU-GLEAM_COVID_OT gets weight 1
+#      USC-SIkJalpha-update gets weight 0 and USC-SIkJalpha gets weight 1
+model_exclusions <- data.frame(model_name = c("MOBS_NEU-GLEAM_COVID", 
+                                              "MOBS_NEU-GLEAM_COVID_OT", 
+                                              "MOBS_NEU-GLEAM_COVID", 
+                                              "USC-SIkJalpha-update"), 
+                               round = c(13,13,14,14), 
+                               weight = c(0.5, 0.5, 0, 0))
+
 # plausible scenarios
 WIS <- SMHEvaluationUtils::add_plaus_weight(proj = WIS,
-                                            variant_takeover = variant_takeover_date,
+                                            variant_takeover = variant_takeover_date, 
                                             modelname_round_weight = model_exclusions,
-                                            keep_flags = TRUE)
+                                            keep_flags = TRUE, 
+                                            p = "data-raw/data-scenarios/MostPlausibleScenarios.csv")
 
 #### WIS BOOTSTRAP INTERVALS ---------------------------------------------------
 boot <- list()
@@ -77,13 +91,13 @@ ggplot(data = p,
   geom_point(data = p_allprojs, 
              color = "grey", shape = 21) +
   geom_linerange(aes(ymin = Q5, ymax = Q95)) +
-  geom_point(size = 2) +
-  geom_text(aes(label = scenario_letter), color = "white", size = 1.5) +
-  geom_text(aes(label = best), hjust = 0, vjust = 0.2) +
+  geom_point(size = 1.2) +
+  geom_text(aes(label = scenario_letter), color = "white", size = 0.9) +
+  geom_text(aes(label = best), hjust = 0, vjust = 0.2, size = 3) +
   geom_text(data = WIS[model_name == "Ensemble_LOP" & plaus_week == 1 & !is.na(WIS)] %>%
               .[, .(n_weeks = paste(length(unique(target_end_date)), "weeks\n")), by = .(round)] %>%
               .[, target := factor("inc death")], 
-            aes(x = as.numeric(as.factor(round)), label = n_weeks), y = -Inf, color = "black", size = 2, vjust = 0) +
+            aes(x = as.numeric(as.factor(round)), label = n_weeks), y = -Inf, color = "black", size = 1.5, vjust = 0) +
   facet_grid(rows = vars(target), 
              labeller = labeller(target = target_labs), 
              switch = "y") +
@@ -94,7 +108,7 @@ ggplot(data = p,
                      labels = round_labs[1:14],
                      limits = c(0.5,14.5)) +
   scale_y_log10() +
-  theme_bw() +
+  theme_bw(base_size = 7) +
   theme(axis.ticks.x = element_blank(),
         axis.title.x = element_blank(),
         legend.position = "none", 
@@ -102,7 +116,7 @@ ggplot(data = p,
         panel.grid.minor.y = element_blank(), 
         strip.background = element_blank(), 
         strip.placement = "outside")
-ggsave("figures/main_figures/figure5.pdf", width = 9, height = 6)
+ggsave("figures/main_figures/figure5.pdf", width = 5.75, height = 3.75)
 
 
 ## values for text
