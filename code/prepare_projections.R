@@ -5,11 +5,6 @@ library(dplyr)
 library(stringr)
 library(SMHEvaluationUtils)
 
-#detach("package:SMHEvaluationUtils", unload = TRUE)
-#remove.packages("SMHEvaluationUtils")
-# install.packages("/Users/eah394/Documents/GitHub/SMHEvaluationUtils", repos = NULL, type="source")
-library(SMHEvaluationUtils)
-
 #### LOAD TRUTH DATA -----------------------------------------------------------
 # input function to read data
 source("code/read_data_files.R")
