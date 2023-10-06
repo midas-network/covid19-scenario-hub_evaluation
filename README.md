@@ -1,5 +1,7 @@
 # Informing pandemic response in the face of uncertainty: An evaluation of the U.S. COVID-19 Scenario Modeling Hub
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8415147.svg)](https://doi.org/10.5281/zenodo.8415147)
+
 This repository contains data and code to reproduce results in 
 >Howerton E, Contamin L, Mullany LC, Qin M, Reich NG, Bents S, et al. Informing pandemic response in the face of uncertainty. An evaluation of the U.S. COVID-19 Scenario Modeling Hub. medRxiv; 2023. p. 2023.06.28.23291998. doi:10.1101/2023.06.28.23291998
 
