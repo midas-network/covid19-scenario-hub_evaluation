@@ -14,8 +14,7 @@ source("code/0_setup_scenario_plausibility/define_variant_takeover.R")
 
 scenario_info <- read.csv("data-raw/data-scenarios/round_dates.csv")
 scenario_info <- scenario_info[,-1]
-scenario_info[,-1] <- apply(scenario_info[,-1], 1:2, function(i){return(ifelse(unlist(gregexpr("/", i))[1] == 2, paste0("0", i), i))})
-scenario_info[,-1] <- lapply(scenario_info[,-1], as.Date, origin="1970-01-01", format = "%m/%d/%y")
+scenario_info[,-1] <- lapply(scenario_info[,-1], as.Date, origin="1970-01-01")
 setDT(scenario_info)
 scenario_info <- scenario_info %>%
   # add variant exclusions
@@ -79,7 +78,7 @@ date_lims = with(table_details[c(1:7,9,11:16),], as.Date(c(min(projection_start_
 #### PANEL A: ALL PROJECTIONS + OBSERVATIONS -----------------------------------
 nb.cols <- 16
 pal_ <- colorRampPalette(brewer.pal(8, "Spectral"))(nb.cols)
-bs <- 11
+bs <- 7
 
 pA = proj %>%
   .[!(round %in% c(8,10))] %>%
@@ -97,18 +96,18 @@ pA = proj %>%
   geom_vline(data = data.frame(var = names(variant_takeover_date), 
                                target_end_date = as.Date(variant_takeover_date, origin = "1970-01-01")), 
              aes(xintercept = target_end_date), 
-             linetype = "dotted") + 
+             linetype = "dotted", size = 0.3) + 
   # add projections
   geom_ribbon(aes(ymin = Q25, ymax = Q975, fill = as.factor(round), group = paste(round,scenario_id)), alpha = 0.03) +
-  geom_line(aes(y = Q500, color = as.factor(round), group = interaction(round, scenario_id), alpha = as.factor(plaus_week)), size = 0.75) +
+  geom_line(aes(y = Q500, color = as.factor(round), group = interaction(round, scenario_id), alpha = as.factor(plaus_week)), size = 0.5) +
   # add observations
   geom_line(data = truth_data[target == "inc hosp" & location == "US"],
-            aes(y = obs)) +
+            aes(y = obs), size = 0.3) +
   # add variant takeover date names
   geom_text(data = data.frame(var = names(variant_takeover_date), 
                               target_end_date = as.Date(variant_takeover_date, origin = "1970-01-01")), 
             aes(x = target_end_date - 4, y = Inf, label = var), 
-            hjust = 1, vjust = 1, size = 3) +
+            hjust = 1, vjust = 1, size = 1.9) +
   coord_cartesian(ylim = c(0,3E5)) +
   scale_alpha_manual(values = c(0.2, 1)) +
   # scale_colour_smoothrainbow() +
@@ -133,18 +132,18 @@ pB = table_details %>%
   geom_vline(data = data.frame(var = names(variant_takeover_date), 
                                target_end_date = as.Date(variant_takeover_date, origin = "1970-01-01")), 
              aes(xintercept = target_end_date), 
-             linetype = "dotted") + 
+             linetype = "dotted", size = 0.3) + 
   # add round dates
   geom_segment(aes(x = projection_start_date, xend = projection_end_date_trunc,  
-                   y = round, yend = round, color = as.factor(round)), size = 4)+
+                   y = round, yend = round, color = as.factor(round)), size = 2.4)+
   geom_segment(aes(x = projection_end_date_trunc, xend = projection_end_date,  
-                   y = round, yend = round, color = as.factor(round)), size = 4, alpha = 0.3)+
+                   y = round, yend = round, color = as.factor(round)), size = 2.4, alpha = 0.3)+
   geom_text(aes(x = projection_start_date + 7, y = round, label = round_name), 
-            color = 'white', hjust = 0, size = 3) +
+            color = 'white', hjust = 0, size = 1.9) +
   # add internal rounds
   geom_label(data = table_details[round %in% c(8,10)], 
             aes(x = projection_start_date + 7, y = round, label = round_name), 
-            color = 'black', fill = "white", hjust = 0, label.size = NA, size = 2.7) +
+            color = 'black', fill = "white", hjust = 0, label.size = NA, size = 1.7) +
   scale_x_date(date_labels = "%B %Y",
                #expand = c(0,0),
                limits = date_lims) +
@@ -170,14 +169,14 @@ pC = table_details2 %>%
   .[, fill := factor(fill, levels = paste("round", c(1:7,9,11:16)))] %>%
   .[, col := ifelse(is.na(fill), 0, 1)] %>%
   ggplot(aes(x = as.factor(round), y = rownum)) + 
-  geom_tile(aes(x = as.factor(round), y = rownum, fill = as.factor(fill))) +
-  geom_vline(xintercept = seq(1.5,15.5, 1), color = "black") + 
-  geom_hline(yintercept = seq(1.5, 6.5,1)) +
+  geom_tile(aes(x = as.factor(round), y = rownum, fill = as.factor(fill)), size = 0.25) +
+  geom_vline(xintercept = seq(1.5,15.5, 1), color = "black", size = 0.3) + 
+  geom_hline(yintercept = seq(1.5, 6.5,1), size = 0.3) +
   geom_text(aes(label = value, size = as.factor(col), color = as.factor(col))) +
   panel_border(color = "black") +
   scale_color_manual(values = c("black", "white")) + 
   scale_fill_discrete(na.value = "white") +
-  scale_size_manual(values = c(2.75, 3.25)) +
+  scale_size_manual(values = c(1.75, 2.25)) +
   scale_x_discrete(expand = c(0,0)) +
   scale_y_continuous(breaks = 1:6,
                      expand = c(0,0),
@@ -195,7 +194,8 @@ plot_grid(pA, pB, pC,
           axis = "l", align = "v", 
           ncol = 1, 
           rel_heights = c(0.4,0.4,0.3), 
-          labels = LETTERS[1:3])
-ggsave("figures/main_figures/figure1.pdf", width = 10, height = 7)
+          labels = letters[1:3], 
+          label_size = 7)
+ggsave("figures/main_figures/figure1.pdf", width = 6.3, height = 4.45)
 
 
