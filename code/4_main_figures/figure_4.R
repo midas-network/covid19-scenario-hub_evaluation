@@ -4,6 +4,7 @@ library(data.table)
 library(ggplot2)
 library(RColorBrewer)
 library(scales)
+library(cowplot)
 
 # load increasing/decreasing data
 inc_dec <- setDT(read.csv("data-output/increase-decrease-classification/increasing_decreasing.csv")) %>%
@@ -18,7 +19,10 @@ inc_dec_obs <- setDT(read.csv("data-output/increase-decrease-classification/incr
 # load objects to assist with plotting
 source("code/plot_setup.R")
 
-bs = 11
+# load projections (if necessary)
+# source("code/prepare_projections.R")
+
+bs = 7
 
 ### FUNCTIONS ------------------------------------------------------------------
 plot_correct <- function(plt){
@@ -33,14 +37,14 @@ plot_correct <- function(plt){
     geom_bar(aes(fill = "SMH"), stat = "identity") +
     geom_segment(aes(x = expectation_Ensemble_LOP/n_total_Ensemble_LOP,xend = expectation_Ensemble_LOP/n_total_Ensemble_LOP,
                      y = as.numeric(target)-0.45, yend = as.numeric(target)+0.45,
-                     linetype = "random expectation")) +
-    geom_vline(xintercept = 1/3) +
+                     linetype = "random expectation"), size = 0.3) +
+    geom_vline(xintercept = 1/3, size = 0.3) +
     geom_segment(aes(x = n_correct_null_fh/n_total_null_fh,xend = n_correct_null_fh/n_total_null_fh,
                      y = as.numeric(target)-0.45, yend = as.numeric(target)+0.45,
-                     linetype = "4-week forecast model")) +
+                     linetype = "4-week forecast model"), size = 0.3) +
     geom_segment(aes(x = n_correct_null_trend/n_total_null_trend,xend = n_correct_null_trend/n_total_null_trend,
                      y = as.numeric(target)-0.45, yend = as.numeric(target)+0.45,
-                     linetype = "continue current trend")) +
+                     linetype = "continue current trend"), size = 0.3) +
     facet_grid(cols = vars(change_bin),
                labeller = labeller(change_bin = classif_labs)) +
     labs(x = "% of round-week-locations correct") +
@@ -55,7 +59,7 @@ plot_correct <- function(plt){
           legend.position = "bottom",
           legend.title = element_blank(),
           panel.grid = element_blank(),
-          panel.spacing = unit(1.1, "line"),
+          panel.spacing = unit(0.7, "line"),
           strip.background = element_blank())
   return(p)
 }
@@ -75,25 +79,25 @@ plot_confusion <- function(plt){
     .[, ":=" (change_bin = factor(change_bin, levels = c("dec", "flat", "inc")),
               change_bin_proj = factor(change_bin_proj, levels = rev(c("dec", "flat", "inc"))))] %>%
     ggplot(aes(x = change_bin, y = change_bin_proj)) +
-    geom_tile(color = "black", fill = "white", size = 0.4) +  #aes(fill = pct_correct), alpha = 0.4,
-    geom_text(aes(label = pct_correct_txt), size = 3) +
+    geom_tile(color = "black", fill = "white", size = 0.25) +  #aes(fill = pct_correct), alpha = 0.4,
+    geom_text(aes(label = pct_correct_txt), size = 2) +
     # add text for recall (by projected classification)
     geom_text(data = plt %>%
                 .[, .(n_total = sum(plaus_weight, na.rm = TRUE)), by = .(change_bin_proj, change_bin)] %>%
                 .[, pct_correct := paste0(round(n_total/sum(n_total),2)*100, "%"), by = .(change_bin_proj)] %>%
                 .[change_bin_proj == change_bin] %>% .[, change_bin := NULL],
-              aes(x = 3.75, label = pct_correct), size = 3) +
+              aes(x = 3.75, label = pct_correct), size = 2) +
     # add text for precision (by observed classification)
     geom_text(data = plt %>%
                 .[, .(n_total = sum(plaus_weight, na.rm = TRUE)), by = .(change_bin_proj, change_bin)] %>%
                 .[, pct_correct := paste0(round(n_total/sum(n_total),2)*100, "%"), by = .(change_bin)] %>%
                 .[change_bin_proj == change_bin] %>% .[, change_bin_proj := NULL],
-              aes(y = 0.4, label = pct_correct), size = 3) +
+              aes(y = 0.4, label = pct_correct), size = 2) +
     # add text for all correct
     geom_text(data = plt %>%
                 .[, .(n_total = sum(plaus_weight[change_bin == change_bin_proj], na.rm = TRUE)/sum(plaus_weight, na.rm = TRUE))] %>%
                 .[, pct_correct := paste0(round(n_total,2)*100, "%")],
-              aes(x = 3.75, y = 0.4, label = pct_correct), size = 3) +
+              aes(x = 3.75, y = 0.4, label = pct_correct), size = 2) +
     coord_cartesian(xlim = c(0.5, 3.75),
                   ylim = c(0.4, 3.5),
                   clip = 'off') +
@@ -132,8 +136,8 @@ pA <- inc_dec_obs[target_end_date >= dates[1] &
                     location == "US" &
                     target == "inc hosp"] %>%
   ggplot(aes(x = target_end_date, y = obs)) +
-  geom_line() +
-  geom_point(aes(fill = change_bin), size = 2.5, shape = 21) +
+  geom_line(size = 0.3) +
+  geom_point(aes(fill = change_bin), size = 1.5, shape = 21) +
   scale_fill_manual(values = rev(brewer.pal(3,"RdYlBu")),
                      labels = c("decreasing", "flat ","increasing"),
                      na.value = "lightgrey") +
@@ -156,8 +160,8 @@ pB <- inc_dec[round == 11 &
                 plaus_weight == 1 &
                 target == "inc hosp"] %>%
   ggplot(aes(x = target_end_date, y = obs)) +
-  geom_line() +
-  geom_point(aes(fill = change_bin), size = 2.5, shape = 21) +
+  geom_line(size = 0.3) +
+  geom_point(aes(fill = change_bin), size = 1.5, shape = 21) +
   scale_fill_manual(values = brewer.pal(3,"RdYlBu")[c(3,1)],
                      labels = c("decreasing", "increasing"),
                      na.value = "lightgrey") +
@@ -192,15 +196,17 @@ pD <- plot_confusion(plt = plt %>%
 #### COMBINE INTO ONE FIGURE ---------------------------------------------------
 plot_grid(
   plot_grid(pA, pB, l,
-            labels = LETTERS[1:2],
+            labels = letters[1:2],
+            label_size = 7,
             ncol = 1,
             rel_heights = c(0.45,0.45,0.05)),
   plot_grid(pC,pD,
-            labels = LETTERS[3:4],
+            labels = letters[3:4],
+            label_size = 7,
             align = "h", axis = "tb",
             nrow = 1, rel_widths = c(0.7, 0.3)),
   nrow = 1, rel_widths = c(0.2,0.8))
-ggsave("figures/main_figures/figure4.pdf", width = 10, height = 3)
+ggsave("figures/main_figures/figure4.pdf", width = 6.3, height = 2)
 
 
 # #### ALL PROJECTIONS -----------------------------------------------------------
@@ -215,10 +221,11 @@ pD <- plot_confusion(plt = plt %>%
                        .[, plaus_weight := 1])
 
 plot_grid(pC,pD,
-          labels = LETTERS[1:2],
+          labels = letters[1:2],
+          label_size = 7,
           align = "h", axis = "tb",
           nrow = 1, rel_widths = c(0.7, 0.3))
-ggsave("figures/trend_classification/figure4_allproj.pdf", width = 9.6, height = 3.5)
+ggsave("figures/trend_classification/figure4_allproj.pdf", width = 6.3, height = 2)
 
 #### Q75 -----------------------------------------------------------------------
 pC <- plot_correct(plt = rbindlist(list(plt %>%
@@ -231,10 +238,11 @@ pD <- plot_confusion(plt = plt %>%
                            !(quantile %in% c(0.5, 0.975))])
 
 plot_grid(pC,pD,
-          labels = LETTERS[1:2],
+          labels = letters[1:2],
+          label_size = 7,
           align = "h", axis = "tb",
           nrow = 1, rel_widths = c(0.7, 0.3))
-ggsave("figures/trend_classification/figure4_Q75.pdf", width = 9.6, height = 3.5)
+ggsave("figures/trend_classification/figure4_Q75.pdf", width = 6.3, height = 2)
 
 #### Q97.5 ---------------------------------------------------------------------
 
@@ -248,10 +256,11 @@ pD <- plot_confusion(plt = plt %>%
                            !(quantile %in% c(0.5, 0.75))])
 
 plot_grid(pC,pD,
-          labels = LETTERS[1:2],
+          labels = letters[1:2],
+          label_size = 7,
           align = "h", axis = "tb",
           nrow = 1, rel_widths = c(0.7, 0.3))
-ggsave("figures/trend_classification/figure4_Q975.pdf", width = 9.6, height = 3.5)
+ggsave("figures/trend_classification/figure4_Q975.pdf", width = 6.3, height = 2)
 
 #### ACROSS ALL TARGETS --------------------------------------------------------
 plt %>%
